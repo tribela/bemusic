@@ -8,7 +8,7 @@ class Bms(object):
     )
 
     pattern_data = re.compile(
-        r'#(?P<line>\d{3})'
+        r'#(?P<bar>\d{3})'
         '(?P<channel>[0-9a-f]{2}):'
         '(?P<data>.*)$',
         re.IGNORECASE)
@@ -18,6 +18,7 @@ class Bms(object):
         self.wav = {}
         self.stop = {}
         self.bpm = {}
+        self.bars = {}
 
     @classmethod
     def parse(cls, fp):
@@ -28,8 +29,7 @@ class Bms(object):
             header_matched = cls.pattern_header.match(line)
             data_matched = cls.pattern_data.match(line)
             if data_matched:
-                # Parse data
-                pass
+                cls.parse_header(instance, data_matched)
             elif header_matched:
                 cls.parse_header(instance, header_matched)
         return instance
@@ -84,3 +84,8 @@ class Bms(object):
         elif field.startswith('BPM'):
             # TODO: implement this.
             pass
+
+    @staticmethod
+    def parse_data(instance, matched):
+        # TODO: implement this.
+        pass
