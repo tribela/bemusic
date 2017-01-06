@@ -31,52 +31,56 @@ class Bms(object):
                 # Parse data
                 pass
             elif header_matched:
-                field = header_matched.group('field')
-                value = header_matched.group('value')
-
-                if field == 'PLAYER':
-                    instance.player = value
-                elif field == 'TITLE':
-                    instance.title = value
-                elif field == 'ARTIST':
-                    instance.artist = value
-                elif field == 'GENRE':
-                    instance.genre = value
-                elif field == 'BPM':
-                    instance.bpm = float(value)
-                elif field == 'PLAYLEVEL':
-                    instance.playlevel = int(value)
-                elif field == 'RANK':
-                    instance.rank = int(value)
-                elif field == 'TOTAL':
-                    instance.total = int(value)
-                elif field == 'VOLWAV':
-                    instance.volwav = int(value)
-                elif field == 'MIDIFILE':
-                    instance.midifile = value
-                elif field == 'STAGEFILE':
-                    instance.stagefile = value
-                elif field == 'VIDEOFILE':
-                    instance.videofile = value
-                elif field == 'LNTYPE':
-                    # XXX
-                    instance.lntype[int(value)] = True
-                elif field == 'LNOBJ':
-                    # TODO: implement this.
-                    pass
-                elif field == 'EXTCHR':
-                    # TODO: implement this.
-                    pass
-                elif field.startswith('WAV'):
-                    # TODO: implement this.
-                    pass
-                elif field.startswith('BMP'):
-                    # TODO: implement this.
-                    pass
-                elif field.startswith('STOP'):
-                    # TODO: implement this.
-                    pass
-                elif field.startswith('BPM'):
-                    # TODO: implement this.
-                    pass
+                cls.parse_header(instance, header_matched)
         return instance
+
+    @staticmethod
+    def parse_header(instance, matched):
+        field = matched.group('field')
+        value = matched.group('value')
+
+        if field == 'PLAYER':
+            instance.player = value
+        elif field == 'TITLE':
+            instance.title = value
+        elif field == 'ARTIST':
+            instance.artist = value
+        elif field == 'GENRE':
+            instance.genre = value
+        elif field == 'BPM':
+            instance.bpm = float(value)
+        elif field == 'PLAYLEVEL':
+            instance.playlevel = int(value)
+        elif field == 'RANK':
+            instance.rank = int(value)
+        elif field == 'TOTAL':
+            instance.total = int(value)
+        elif field == 'VOLWAV':
+            instance.volwav = int(value)
+        elif field == 'MIDIFILE':
+            instance.midifile = value
+        elif field == 'STAGEFILE':
+            instance.stagefile = value
+        elif field == 'VIDEOFILE':
+            instance.videofile = value
+        elif field == 'LNTYPE':
+            # XXX
+            instance.lntype[int(value)] = True
+        elif field == 'LNOBJ':
+            # TODO: implement this.
+            pass
+        elif field == 'EXTCHR':
+            # TODO: implement this.
+            pass
+        elif field.startswith('WAV'):
+            # TODO: implement this.
+            pass
+        elif field.startswith('BMP'):
+            # TODO: implement this.
+            pass
+        elif field.startswith('STOP'):
+            # TODO: implement this.
+            pass
+        elif field.startswith('BPM'):
+            # TODO: implement this.
+            pass
